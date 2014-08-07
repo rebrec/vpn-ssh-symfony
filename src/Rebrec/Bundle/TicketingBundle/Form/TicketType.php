@@ -20,14 +20,9 @@ class TicketType extends AbstractType
             ->add('beginValidDate')
             ->add('endValidDate')
             ->add('allowedTime')
-            ->add('clientIp')
-            ->add('sshHostIp')
-            ->add('sshHostPort')
-            ->add('username')
-            ->add('auth_key')         
-            ->add('publicKey')
-            ->add('privateKey')
-            ->add('ppkKey')
+            ->add('clientIp','text', array(
+                'required' => false,                
+                ))
             ->add('Valider', 'submit')
         ;
 

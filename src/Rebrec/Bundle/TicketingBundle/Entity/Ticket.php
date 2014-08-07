@@ -59,7 +59,7 @@ class Ticket
     /**
      * @var string
      *
-     * @ORM\Column(name="client_ip", type="string", length=16)
+     * @ORM\Column(name="client_ip", type="string", length=16, nullable=true)
      */
     private $clientIp;
 
@@ -80,35 +80,35 @@ class Ticket
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=30)
+     * @ORM\Column(name="username", type="string", length=30, unique=true)
      */
     private $username;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="auth_key", type="string", length=30)
+     * @ORM\Column(name="auth_key", type="string", length=30, unique=true)
      */
     private $auth_key;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="public_key", type="string", length=1000)
+     * @ORM\Column(name="public_key", type="string", length=257)
      */
     private $publicKey;
 
     /**
      * @var string
      * 
-     * @ORM\Column(name="private_key", type="string", length=1000)
+     * @ORM\Column(name="private_key", type="string", length=257)
      */
     private $privateKey;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ppk_key", type="string", length=1000)
+     * @ORM\Column(name="ppk_key", type="string", length=257)
      */
     private $ppkKey;
 
@@ -116,6 +116,17 @@ class Ticket
     {
         $generator = new SecureRandom();
         $this->setAuthKey(bin2hex($generator->nextBytes(10)));
+        $this->setUsername('usr-' . $this->getAuthKey());
+        $this->setSshHostIp('192.168.103.210');
+        $this->setSshHostPort(22);
+        $start = new \DateTime();
+        $end = $start->add(new \DateInterval('P2D'));
+        
+        $this->setBeginValidDate($start);
+        $this->setEndValidDate($end);
+        $this->setPublicKey("generated");
+        $this->setPrivateKey("generated");
+        $this->setPpkKey('generated');
     }
 
     /**

@@ -9,6 +9,8 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
+                <th>Valide à partir de</th>
+                <th>Valide jusqu'à</th>
                 <th>Description</th>
                 <th>Token</th>
                 <th>Profile</th>
@@ -17,6 +19,8 @@
         <tbody>
             {% for ticket in arrTickets %}
                 <tr>
+                    <td>{{ ticket.getBeginValidDate|date('Y-m-d H:i:s') }}</td>
+                    <td>{{ ticket.getEndValidDate|date('Y-m-d H:i:s') }}</td>
                     <td>{{ ticket.description }}</td>
                     <td>{{ ticket.authkey }}</td>
                     <td>{{ ticket.profile }}</td>

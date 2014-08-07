@@ -48,9 +48,7 @@ class TicketsController extends Controller
         
         $arrTickets = $repository->findAll();
        // return var_dump($arrTickets);
-        return $this->render('RebrecTicketingBundle:Tickets:list.html.twig', array(
-            'arrTickets' => $arrTickets,
-        ));
+        return $this->render('RebrecTicketingBundle:Tickets:list.html.twig', array('arrTickets' => $arrTickets));
     }
 
     /**

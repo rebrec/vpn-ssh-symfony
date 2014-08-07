@@ -1,5 +1,5 @@
 rebrec_ticketing_homepage:
-    path:     /hello/{name}
+    path:     /
     defaults: { _controller: RebrecTicketingBundle:Default:index }
 
 rebrec_ticketing_creation_confirmation:
