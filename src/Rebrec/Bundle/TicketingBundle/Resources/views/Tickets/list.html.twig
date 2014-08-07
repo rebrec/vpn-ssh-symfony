@@ -1,0 +1,27 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Tickets:list{% endblock %}
+
+{% block body %}
+{% spaceless %}
+<h1>Tickets Alloués</h1>
+    <br>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Token</th>
+                <th>Profile</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in arrTickets %}
+                <tr>
+                    <td>{{ ticket.description }}</td>
+                    <td>{{ ticket.authkey }}</td>
+                    <td>{{ ticket.profile }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+{%endspaceless %}
+{% endblock %}

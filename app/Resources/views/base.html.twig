@@ -1,0 +1,62 @@
+{% form_theme form ':Form:fields.html.twig' %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+            {% block stylesheets %}
+                {% stylesheets '../app/Resources/public/bootstrap/css/bootstrap.css'
+                        '../app/Resources/public/css/*'     filter='cssrewrite' %}
+                    <link rel="stylesheet" href="{{ asset_url }}" />
+                {% endstylesheets %}
+            {% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <header>
+            <div class="page-header">
+                <h1>VPN-SSH-GW</h1>
+            </div>
+            <!-- <body data-spy="scroll" data-target=".navbar">  -->
+            <nav class="nav nav-pills" role="navigation">
+                {# <li class='active'><a href="#">some text</a></li>#}
+                <li><a href="{{ path("rebrec_ticketing_tickets_list") }}">Liste Tickets</a></li>
+                <li><a href="{{ path("rebrec_ticketing_tickets_new")}}">Nouveau Ticket</a></li>
+                {#
+                <li class='dropdown'> 
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">sub menu<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">some text</a></li>
+                        <li class="divider"><a href="#"></a></li>
+                        <li><a href="#">some text</a></li>
+                    </ul>
+                </li>
+                <li class=''><a href="#">some text</a></li>
+                <li class=''><a href="#">some text</a></li>
+                #}
+                <p class="navbar-text navbar-right">Signed in as XXXX</p>
+            </nav>
+        </header>
+        <section>
+            <div id="content">
+            {% block body %}{% endblock %}
+        
+            </div>
+        </section>
+        <footer>
+
+        </footer>
+
+        {% block javascripts %}
+            {% javascripts 
+            '../app/Resources/public/bootstrap/js/jquery-1.11.1.min.js'
+            '../app/Resources/public/bootstrap/js/bootstrap.js'
+            %}
+            <script src="{{ asset_url }}" type="text/javascript"></script>
+            {% endjavascripts %}
+        {% endblock %}
+    </body>
+</html>
