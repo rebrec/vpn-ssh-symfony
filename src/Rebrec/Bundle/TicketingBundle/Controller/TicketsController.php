@@ -27,7 +27,7 @@ class TicketsController extends Controller
             $em->persist($ticket);
             $em->flush();
             
-            $request->getSession()->getFlashBag()->set('notice', 'OK!');
+            //$request->getSession()->getFlashBag()->set('notice', 'OK!');
             return $this->redirect($this->generateUrl('rebrec_ticketing_tickets_new', array(
                 'id' => $ticket->getAuthkey()
             )));

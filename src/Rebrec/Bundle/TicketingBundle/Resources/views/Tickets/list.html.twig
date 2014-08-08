@@ -1,3 +1,4 @@
+
 {% extends "::base.html.twig" %}
 
 {% block title %}Tickets:list{% endblock %}
@@ -11,6 +12,7 @@
             <tr>
                 <th>Valide à partir de</th>
                 <th>Valide jusqu'à</th>
+                <th>Durée de Validité</th>
                 <th>Description</th>
                 <th>Token</th>
                 <th>Profile</th>
@@ -21,6 +23,7 @@
                 <tr>
                     <td>{{ ticket.getBeginValidDate|date('Y-m-d H:i:s') }}</td>
                     <td>{{ ticket.getEndValidDate|date('Y-m-d H:i:s') }}</td>
+                    <td>{{ ticket.getAllowedTime|date('Y-m-d H:i:s') }}</td>
                     <td>{{ ticket.description }}</td>
                     <td>{{ ticket.authkey }}</td>
                     <td>{{ ticket.profile }}</td>

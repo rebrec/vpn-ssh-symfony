@@ -2,6 +2,28 @@
 
 {% extends "::base.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets 
+        '@RebrecTicketingBundle/Resources/public/css/jquery.datetimepicker.css'  %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts 
+        '@RebrecTicketingBundle/Resources/public/js/jquery.js'
+        '@RebrecTicketingBundle/Resources/public/js/jquery.datetimepicker.js'
+    %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+    
+    {% endjavascripts %}
+    <script type="text/javascript">
+        $('.datetimepicker').datetimepicker();
+    </script>
+    
+{% endblock %}
+
 {% block title %}Tickets:new{% endblock %}
 
 {% block body %}

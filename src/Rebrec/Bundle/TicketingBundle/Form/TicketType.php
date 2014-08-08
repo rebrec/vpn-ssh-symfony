@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+
 class TicketType extends AbstractType
 {
         /**
@@ -17,13 +18,27 @@ class TicketType extends AbstractType
         $builder
             ->add('description')
             ->add('profile')
-            ->add('beginValidDate')
-            ->add('endValidDate')
-            ->add('allowedTime')
+            ->add('beginValidDate', 'date', array(
+                'label' => 'Date de Début',
+                'format' => 'yyyy/MM/dd HH:mm',
+                'widget' => 'single_text',
+                'attr' => array('class'=>'datetimepicker'),
+            ))
+            ->add('endValidDate', 'date', array(
+                'label' => 'Date de Fin',
+                'format' => 'yyyy/MM/dd HH:mm',
+                'widget' => 'single_text',
+                'attr' => array('class'=>'datetimepicker'),
+            ))
+            ->add('allowedTime', 'datetime', array(
+                'widget' => 'single_text',
+                'format' => 'yyyy/MM/dd',
+                'attr' => array('class'=>'datetimepicker'),
+            ))
             ->add('clientIp','text', array(
                 'required' => false,                
                 ))
-            ->add('Valider', 'submit')
+            ->add('Valider', 'submit')            
         ;
 
     }

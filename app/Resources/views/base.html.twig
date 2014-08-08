@@ -6,7 +6,9 @@
 
             {% block stylesheets %}
                 {% stylesheets '../app/Resources/public/bootstrap/css/bootstrap.css'
-                        '../app/Resources/public/css/*'     filter='cssrewrite' %}
+                        '../app/Resources/public/css/*' 
+                        
+                %}
                     <link rel="stylesheet" href="{{ asset_url }}" />
                 {% endstylesheets %}
             {% endblock %}

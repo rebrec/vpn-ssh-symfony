@@ -1,9 +1,12 @@
+{% extends 'form_div_layout.html.twig' %}
+
+
 {% block form_row %}
 {% spaceless %}
     <div class="row">
-        <div class="col-sm-1"> {{ form_label(form) }}  </div>
-        <div class="col-sm-1"> {{ form_errors(form) }} </div>
-        <div class="col-sm-1"> {{ form_widget(form) }} </div>
+        <div class="col-lg-2"> {{ form_label(form) }}  </div>
+        <div class="col-lg-1"> {{ form_widget(form) }} </div>
+        <div class="col-lg-1"> {{ form_errors(form) }} </div>
     </div>
 {% endspaceless %}
 {% endblock form_row %}

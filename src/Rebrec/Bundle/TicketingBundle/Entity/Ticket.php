@@ -123,7 +123,7 @@ class Ticket
         $end = $start->add(new \DateInterval('P2D'));
         
         $this->setBeginValidDate($start);
-        $this->setEndValidDate($end);
+        $this->setEndValidDate(new$end);
         $this->setPublicKey("generated");
         $this->setPrivateKey("generated");
         $this->setPpkKey('generated');
