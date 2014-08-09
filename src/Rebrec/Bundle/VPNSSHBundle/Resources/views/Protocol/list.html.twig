@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}RebrecVPNSSHBundle:Protocol:list{% endblock %}
+
+{% block body %}
+{% spaceless %}
+<h1>Protocols Déclarés</h1>
+    <br>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Nom</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for protocol in arrProtocols %}
+                <tr>
+                    <td>{{ protocol.Name }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+{%endspaceless %}
+{% endblock %}

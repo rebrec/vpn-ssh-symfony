@@ -10,9 +10,10 @@
     {% endstylesheets %}
 {% endblock %}
 
-{% block javascripts %}
+{% block javascripts_last %}
+    {{ parent() }}
     {% javascripts 
-        '@RebrecVPNSSHBundle/Resources/public/js/jquery.js'
+        
         '@RebrecVPNSSHBundle/Resources/public/js/jquery.datetimepicker.js'
     %}
     <script src="{{ asset_url }}" type="text/javascript"></script>

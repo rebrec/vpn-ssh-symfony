@@ -2,7 +2,12 @@ rebrec_vpnssh_homepage:
     path:     /
     defaults: { _controller: RebrecVPNSSHBundle:Default:index }
 
-rebrec_vpnssh_creation_confirmation:
+rebrec_vpnssh_tickets:
     resource: "@RebrecVPNSSHBundle/Controller/TicketsController.php" 
     type:     annotation
     prefix:   /tickets/
+
+rebrec_vpnssh_protocols:
+    resource: "@RebrecVPNSSHBundle/Controller/ProtocolController.php" 
+    type:     annotation
+    prefix:   /protocols/

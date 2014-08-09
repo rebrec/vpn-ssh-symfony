@@ -8,10 +8,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Symfony\Component\HttpFoundation\Request;
 
-use Rebrec\Bundle\VPNSSHBundle\Entity\Ticket;
-use Rebrec\Bundle\VPNSSHBundle\Form\TicketType;
+use Rebrec\Bundle\VPNSSHBundle\Entity\Protocol;
+use Rebrec\Bundle\VPNSSHBundle\Form\ProtocolType;
 
-class TicketsController extends Controller
+class ProtocolController extends Controller
 {
     /**
      * @Route("/add")
@@ -19,19 +19,19 @@ class TicketsController extends Controller
      */
     public function addAction(Request $request)
     {
-        $ticket = new Ticket();
-        $form = $this->createForm(new TicketType(), $ticket);
+        $protocol = new Protocol();
+        $form = $this->createForm(new ProtocolType(), $protocol);
         $form->handleRequest($request);
         if ($form->isValid()) {
             // perform some action, such as saving etc...
             $em = $this->getDoctrine()->getManager();
-            $em->persist($ticket);
+            $em->persist($protocol);
             $em->flush();
             
             //$request->getSession()->getFlashBag()->set('notice', 'OK!');
-            return $this->redirect($this->generateUrl('rebrec_vpnssh_tickets_list'));
+            return $this->redirect($this->generateUrl('rebrec_vpnssh_protocol_list'));
         }
-        return $this->render('RebrecVPNSSHBundle:Tickets:add.html.twig', array(
+        return $this->render('RebrecVPNSSHBundle:Protocol:add.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -43,13 +43,13 @@ class TicketsController extends Controller
      */
     public function listAction()
     {
-        $repository = $this->getDoctrine()->getRepository('RebrecVPNSSHBundle:Ticket');
-        
-        $arrTickets = $repository->findAll();
+        $repository = $this->getDoctrine()->getRepository('RebrecVPNSSHBundle:Protocol');
+        $arrProtocols = $repository->findAll();
        // return var_dump($arrTickets);
-        return $this->render('RebrecVPNSSHBundle:Tickets:list.html.twig', array('arrTickets' => $arrTickets));
+        return $this->render('RebrecVPNSSHBundle:Protocol:list.html.twig', array('arrProtocols' => $arrProtocols));
+
     }
- 
+
     /**
      * @Route("/delete")
      * @Template()
