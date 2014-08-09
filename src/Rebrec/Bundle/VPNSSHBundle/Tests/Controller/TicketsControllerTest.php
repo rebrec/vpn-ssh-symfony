@@ -1,6 +1,6 @@
 <?php
 
-namespace Rebrec\Bundle\TicketingBundle\Tests\Controller;
+namespace Rebrec\Bundle\VPNSSHBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

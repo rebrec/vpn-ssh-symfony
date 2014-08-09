@@ -1,13 +1,13 @@
 <?php
 
-namespace Rebrec\Bundle\TicketingBundle\Controller;
+namespace Rebrec\Bundle\VPNSSHBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-use Rebrec\Bundle\TicketingBundle\Entity\Ticket;
-use Rebrec\Bundle\TicketingBundle\Form\TicketType;
+use Rebrec\Bundle\VPNSSHBundle\Entity\Ticket;
+use Rebrec\Bundle\VPNSSHBundle\Form\TicketType;
 use Symfony\Component\HttpFoundation\Request;
 
 class TicketsController extends Controller
@@ -28,11 +28,11 @@ class TicketsController extends Controller
             $em->flush();
             
             //$request->getSession()->getFlashBag()->set('notice', 'OK!');
-            return $this->redirect($this->generateUrl('rebrec_ticketing_tickets_new', array(
+            return $this->redirect($this->generateUrl('rebrec_vpnssh_tickets_new', array(
                 'id' => $ticket->getAuthkey()
             )));
         }
-        return $this->render('RebrecTicketingBundle:Tickets:new.html.twig', array(
+        return $this->render('RebrecVPNSSHBundle:Tickets:new.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -44,13 +44,13 @@ class TicketsController extends Controller
      */
     public function listAction()
     {
-        $repository = $this->getDoctrine()->getRepository('RebrecTicketingBundle:Ticket');
+        $repository = $this->getDoctrine()->getRepository('RebrecVPNSSHBundle:Ticket');
         
         $arrTickets = $repository->findAll();
        // return var_dump($arrTickets);
-        return $this->render('RebrecTicketingBundle:Tickets:list.html.twig', array('arrTickets' => $arrTickets));
+        return $this->render('RebrecVPNSSHBundle:Tickets:list.html.twig', array('arrTickets' => $arrTickets));
     }
-
+ 
     /**
      * @Route("/delete")
      * @Template()

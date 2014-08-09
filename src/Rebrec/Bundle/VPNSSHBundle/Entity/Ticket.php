@@ -1,6 +1,6 @@
 <?php
 
-namespace Rebrec\Bundle\TicketingBundle\Entity;
+namespace Rebrec\Bundle\VPNSSHBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Util\SecureRandom;

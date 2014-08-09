@@ -1,6 +1,6 @@
 <?php
 
-namespace Rebrec\Bundle\TicketingBundle\Form;
+namespace Rebrec\Bundle\VPNSSHBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -49,7 +49,7 @@ class TicketType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Rebrec\Bundle\TicketingBundle\Entity\Ticket'
+            'data_class' => 'Rebrec\Bundle\VPNSSHBundle\Entity\Ticket'
         ));
     }
 
@@ -58,6 +58,6 @@ class TicketType extends AbstractType
      */
     public function getName()
     {
-        return 'rebrec_bundle_ticketingbundle_ticket';
+        return 'rebrec_bundle_vpnsshbundle_ticket';
     }
 }

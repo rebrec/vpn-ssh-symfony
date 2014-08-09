@@ -1,8 +1,0 @@
-rebrec_ticketing_homepage:
-    path:     /
-    defaults: { _controller: RebrecTicketingBundle:Default:index }
-
-rebrec_ticketing_creation_confirmation:
-    resource: "@RebrecTicketingBundle/Controller/TicketsController.php" 
-    type:     annotation
-    prefix:   /tickets/

@@ -5,15 +5,15 @@
 {% block stylesheets %}
     {{ parent() }}
     {% stylesheets 
-        '@RebrecTicketingBundle/Resources/public/css/jquery.datetimepicker.css'  %}
+        '@RebrecVPNSSHBundle/Resources/public/css/jquery.datetimepicker.css'  %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
 
 {% block javascripts %}
     {% javascripts 
-        '@RebrecTicketingBundle/Resources/public/js/jquery.js'
-        '@RebrecTicketingBundle/Resources/public/js/jquery.datetimepicker.js'
+        '@RebrecVPNSSHBundle/Resources/public/js/jquery.js'
+        '@RebrecVPNSSHBundle/Resources/public/js/jquery.datetimepicker.js'
     %}
     <script src="{{ asset_url }}" type="text/javascript"></script>
     

@@ -33,7 +33,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ "RebrecTicketingBundle" ]
+    bundles:        [ "RebrecVPNSSHBundle" ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~

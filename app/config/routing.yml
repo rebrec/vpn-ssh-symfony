@@ -1,4 +1,4 @@
-rebrec_ticketing:
-    resource: "@RebrecTicketingBundle/Resources/config/routing.yml"
+rebrec_vpnssh:
+    resource: "@RebrecVPNSSHBundle/Resources/config/routing.yml"
     prefix:   /
 

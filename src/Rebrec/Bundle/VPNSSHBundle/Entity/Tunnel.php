@@ -1,6 +1,6 @@
 <?php
 
-namespace Rebrec\Bundle\TicketingBundle\Entity;
+namespace Rebrec\Bundle\VPNSSHBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -44,8 +44,8 @@ class Tunnel
 
     /**
      * @var string
-     * 
-     * @ORM\OneToMany(targetEntity="Protocol", mappedBy="Name")
+     * @ORM\ManyToOne(targetEntity="Protocol", inversedBy="tunnels")
+     * @ORM\JoinColumn(name="protocol_id", referencedColumnName="id")
      */
     private $protocol;
 
