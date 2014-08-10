@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+use Rebrec\Bundle\VPNSSHBundle\Form\ProtocolType;
+
 class TunnelType extends AbstractType
 {
         /**
@@ -18,7 +20,13 @@ class TunnelType extends AbstractType
             ->add('name')
             ->add('hostIp')
             ->add('hostPort')
-            ->add('protocol')
+            ->add('protocol', 'entity', array(
+                'class' => 'RebrecVPNSSHBundle:Protocol',
+                'property' => 'name',
+                'multiple' => false,
+            ))
+            ->add('Valider', 'submit') 
+                
         ;
     }
     

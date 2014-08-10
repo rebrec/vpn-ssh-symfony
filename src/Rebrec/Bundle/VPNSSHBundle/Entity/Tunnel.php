@@ -44,8 +44,7 @@ class Tunnel
 
     /**
      * @var string
-     * @ORM\ManyToOne(targetEntity="Protocol", inversedBy="tunnels")
-     * @ORM\JoinColumn(name="protocol_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Protocol")
      */
     private $protocol;
 
@@ -132,10 +131,10 @@ class Tunnel
     /**
      * Set protocol
      *
-     * @param string $protocol
+     * @param \Rebrec\Bundle\VPNSSHBundle\Entity\Protocol $protocol
      * @return Tunnel
      */
-    public function setProtocol($protocol)
+    public function setProtocol(\Rebrec\Bundle\VPNSSHBundle\Entity\Protocol $protocol = null)
     {
         $this->protocol = $protocol;
 
@@ -145,10 +144,19 @@ class Tunnel
     /**
      * Get protocol
      *
-     * @return string 
+     * @return \Rebrec\Bundle\VPNSSHBundle\Entity\Protocol 
      */
     public function getProtocol()
     {
         return $this->protocol;
+    }
+    /**
+     * Get protocol NAME
+     *
+     * @return string
+     */
+    public function getProtocolName()
+    {
+        return $this->protocol->getName();
     }
 }

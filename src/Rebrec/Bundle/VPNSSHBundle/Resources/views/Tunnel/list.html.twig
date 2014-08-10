@@ -1,7 +1,30 @@
+
 {% extends "::base.html.twig" %}
 
-{% block title %}RebrecVPNSSHBundle:Tunnel:list{% endblock %}
+{% block title %}Tunnels:list{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Tunnel:list page</h1>
+{% spaceless %}
+<h1>Tunnels Alloués</h1>
+    <br>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>IP</th>
+                <th>Port</th>
+                <th>Protocol</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tunnel in arrTunnels %}
+                <tr>
+                    <td>{{ tunnel.name }}</td>
+                    <td>{{ tunnel.hostip }}</td>
+                    <td>{{ tunnel.hostport }}</td>
+                    <td>{{ tunnel.protocolname }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+{%endspaceless %}
 {% endblock %}

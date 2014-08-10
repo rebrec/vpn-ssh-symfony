@@ -11,3 +11,8 @@ rebrec_vpnssh_protocols:
     resource: "@RebrecVPNSSHBundle/Controller/ProtocolController.php" 
     type:     annotation
     prefix:   /protocols/
+
+rebrec_vpnssh_tunnels:
+    resource: "@RebrecVPNSSHBundle/Controller/TunnelController.php" 
+    type:     annotation
+    prefix:   /tunnels/

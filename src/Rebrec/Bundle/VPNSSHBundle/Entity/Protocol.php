@@ -28,16 +28,7 @@ class Protocol
      */
     private $name;
 
-    /**
-     *
-     * @ORM\OneToMany(targetEntity="Tunnel", mappedBy="protocol")
-     */
-    private $tunnels;
-    
-    public function __construct()
-    {
-        $this->tunnels = new ArrayCollection();
-    }
+ 
 
     /**
      * Get id
@@ -70,38 +61,5 @@ class Protocol
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Add tunnels
-     *
-     * @param \Rebrec\Bundle\VPNSSHBundle\Entity\Tunnel $tunnels
-     * @return Protocol
-     */
-    public function addTunnel(\Rebrec\Bundle\VPNSSHBundle\Entity\Tunnel $tunnels)
-    {
-        $this->tunnels[] = $tunnels;
-
-        return $this;
-    }
-
-    /**
-     * Remove tunnels
-     *
-     * @param \Rebrec\Bundle\VPNSSHBundle\Entity\Tunnel $tunnels
-     */
-    public function removeTunnel(\Rebrec\Bundle\VPNSSHBundle\Entity\Tunnel $tunnels)
-    {
-        $this->tunnels->removeElement($tunnels);
-    }
-
-    /**
-     * Get tunnels
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getTunnels()
-    {
-        return $this->tunnels;
     }
 }

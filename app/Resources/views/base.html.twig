@@ -12,7 +12,15 @@
                     <link rel="stylesheet" href="{{ asset_url }}" />
                 {% endstylesheets %}
             {% endblock %}
-
+            {% block javascripts_first %}
+                {% javascripts 
+                    '../app/Resources/public/bootstrap/js/jquery-1.11.1.min.js'
+                    '../app/Resources/public/bootstrap/js/bootstrap.js'
+                    %}
+                    <script src="{{ asset_url }}" type="text/javascript"></script>
+               {% endjavascripts %}               
+            {% endblock %}
+            
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
@@ -23,20 +31,44 @@
             <!-- <body data-spy="scroll" data-target=".navbar">  -->
             <nav class="nav nav-pills" role="navigation">
                 {# <li class='active'><a href="#">some text</a></li>#}
-                <li><a href="{{ path("rebrec_vpnssh_tickets_list") }}">Liste Tickets</a></li>
-                <li><a href="{{ path("rebrec_vpnssh_tickets_new")}}">Nouveau Ticket</a></li>
                 {#
+                <li><a href="{{ path("rebrec_vpnssh_tickets_list") }}">Liste Tickets</a></li>
+                <li><a href="{{ path("rebrec_vpnssh_tickets_add")}}">Nouveau Ticket</a></li>
+                #}
+                
+                
                 <li class='dropdown'> 
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">sub menu<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tickets<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">some text</a></li>
-                        <li class="divider"><a href="#"></a></li>
-                        <li><a href="#">some text</a></li>
+                        <li><a href="{{ path("rebrec_vpnssh_tickets_list") }}">Lister</a></li>
+                        {# <li class="divider"><a href="#"></a></li>#}
+                        <li><a href="{{ path("rebrec_vpnssh_tickets_add") }}">Créer</a></li>
                     </ul>
                 </li>
+
+                <li class='dropdown'> 
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Protocols<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path("rebrec_vpnssh_protocol_list") }}">Lister</a></li>
+                        {# <li class="divider"><a href="#"></a></li>#}
+                        <li><a href="{{ path("rebrec_vpnssh_protocol_add") }}">Créer</a></li>
+                    </ul>
+                </li>
+                
+                <li class='dropdown'> 
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tunnels<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path("rebrec_vpnssh_tunnel_list") }}">Lister</a></li>
+                        {# <li class="divider"><a href="#"></a></li>#}
+                        <li><a href="{{ path("rebrec_vpnssh_tunnel_add") }}">Créer</a></li>
+                    </ul>
+                </li>
+                {#
                 <li class=''><a href="#">some text</a></li>
                 <li class=''><a href="#">some text</a></li>
                 #}
+
+
                 <p class="navbar-text navbar-right">Signed in as XXXX</p>
             </nav>
         </header>
@@ -50,13 +82,8 @@
 
         </footer>
 
-        {% block javascripts %}
-            {% javascripts 
-            '../app/Resources/public/bootstrap/js/jquery-1.11.1.min.js'
-            '../app/Resources/public/bootstrap/js/bootstrap.js'
-            %}
-            <script src="{{ asset_url }}" type="text/javascript"></script>
-            {% endjavascripts %}
+        {% block javascripts_last %}
+
         {% endblock %}
     </body>
 </html>
