@@ -1,0 +1,30 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}TunnelProfile:list{% endblock %}
+
+{% block body %}
+{% spaceless %}
+<h1>Profiles Disponibles</h1>
+    <br>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Tunnels</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tunnelprofile in arrTunnelProfiles %}
+                <tr>
+                    <td>{{ tunnelprofile.name }}</td>
+                    <td>
+                        {% for tunnel in tunnelprofile.tunnels %}
+                            <span>{{ tunnel.name }}</span>&nbsp;
+                    
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+{%endspaceless %}
+{% endblock %}

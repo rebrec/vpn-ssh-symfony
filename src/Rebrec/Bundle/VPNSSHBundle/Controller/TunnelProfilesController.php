@@ -8,10 +8,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Symfony\Component\HttpFoundation\Request;
 
-use Rebrec\Bundle\VPNSSHBundle\Entity\Protocol;
-use Rebrec\Bundle\VPNSSHBundle\Form\ProtocolType;
+use Rebrec\Bundle\VPNSSHBundle\Entity\TunnelProfile;
+use Rebrec\Bundle\VPNSSHBundle\Form\TunnelProfileType;
 
-class ProtocolController extends Controller
+
+class TunnelProfilesController extends Controller
 {
     /**
      * @Route("/add")
@@ -19,19 +20,19 @@ class ProtocolController extends Controller
      */
     public function addAction(Request $request)
     {
-        $protocol = new Protocol();
-        $form = $this->createForm(new ProtocolType(), $protocol);
+        $tunnelprofile = new TunnelProfile();
+        $form = $this->createForm(new TunnelProfileType(), $tunnelprofile);
         $form->handleRequest($request);
         if ($form->isValid()) {
             // perform some action, such as saving etc...
             $em = $this->getDoctrine()->getManager();
-            $em->persist($protocol);
+            $em->persist($tunnelprofile);
             $em->flush();
             
             //$request->getSession()->getFlashBag()->set('notice', 'OK!');
-            return $this->redirect($this->generateUrl('rebrec_vpnssh_protocol_add'));
+            return $this->redirect($this->generateUrl('rebrec_vpnssh_tunnelprofiles_add'));
         }
-        return $this->render('RebrecVPNSSHBundle:Protocol:add.html.twig', array(
+        return $this->render('RebrecVPNSSHBundle:TunnelProfile:add.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -43,13 +44,13 @@ class ProtocolController extends Controller
      */
     public function listAction()
     {
-        $repository = $this->getDoctrine()->getRepository('RebrecVPNSSHBundle:Protocol');
-        $arrProtocols = $repository->findAll();
-       // return var_dump($arrTickets);
-        return $this->render('RebrecVPNSSHBundle:Protocol:list.html.twig', array('arrProtocols' => $arrProtocols));
-
+        $repository = $this->getDoctrine()->getRepository('RebrecVPNSSHBundle:TunnelProfile');
+        
+        $arrTunnelProfiles = $repository->findAll();
+        //var_dump($arrTunnels);
+        return $this->render('RebrecVPNSSHBundle:TunnelProfile:list.html.twig', array('arrTunnelProfiles' => $arrTunnelProfiles));
     }
-
+ 
     /**
      * @Route("/delete")
      * @Template()

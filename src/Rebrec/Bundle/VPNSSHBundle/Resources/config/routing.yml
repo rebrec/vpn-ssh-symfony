@@ -16,3 +16,8 @@ rebrec_vpnssh_tunnels:
     resource: "@RebrecVPNSSHBundle/Controller/TunnelController.php" 
     type:     annotation
     prefix:   /tunnels/
+
+rebrec_vpnssh_tunnelprofiles:
+    resource: "@RebrecVPNSSHBundle/Controller/TunnelProfilesController.php" 
+    type:     annotation
+    prefix:   /tunnelprofiles/

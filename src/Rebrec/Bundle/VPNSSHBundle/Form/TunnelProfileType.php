@@ -6,11 +6,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-//use Rebrec\Bundle\VPNSSHBundle\Form\ProtocolType;
 
-class TunnelType extends AbstractType
+class TunnelProfileType extends AbstractType
 {
-        /**
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -18,15 +17,13 @@ class TunnelType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('hostIp')
-            ->add('hostPort')
-            ->add('protocol', 'entity', array(
-                'class' => 'RebrecVPNSSHBundle:Protocol',
+            ->add('tunnels', 'entity', array(
+                'class' => 'RebrecVPNSSHBundle:Tunnel',
                 'property' => 'name',
-                'multiple' => false,
+                'multiple' => true,
+                'expanded' => true,
             ))
             ->add('Valider', 'submit') 
-                
         ;
     }
     
@@ -36,7 +33,7 @@ class TunnelType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Rebrec\Bundle\VPNSSHBundle\Entity\Tunnel'
+            'data_class' => 'Rebrec\Bundle\VPNSSHBundle\Entity\TunnelProfile'
         ));
     }
 
@@ -45,6 +42,6 @@ class TunnelType extends AbstractType
      */
     public function getName()
     {
-        return 'rebrec_bundle_vpnsshbundle_tunnel';
+        return 'rebrec_bundle_vpnsshbundle_tunnelprofile';
     }
 }
