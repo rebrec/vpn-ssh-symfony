@@ -19,7 +19,11 @@
                     <td>{{ tunnelprofile.name }}</td>
                     <td>
                         {% for tunnel in tunnelprofile.tunnels %}
-                            <span>{{ tunnel.name }}</span>&nbsp;
+                            <a href="#">{{tunnel.name}}
+                                {{
+                                (tunnel.protocolname|lower ~ '://(') ~ tunnel.hostip ~ ':' ~ tunnel.hostport ~ ')' 
+                                }}
+                            </a>&nbsp;
                     
                         {% endfor %}
                     </td>
