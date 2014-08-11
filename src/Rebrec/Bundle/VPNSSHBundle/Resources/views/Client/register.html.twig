@@ -1,0 +1,16 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}RebrecVPNSSHBundle:Client:register{% endblock %}
+
+{% block body %}
+<h1>Welcome to the Client:register page</h1>
+{% if error == true %}
+    Wrong Session ID of IP already registered !
+{% else %}
+    Your IP {{ ipaddress }} have been recorded for session {{ auth_key }}<br/>
+    You might have to run the client now, or download it from 
+    <a href='#'>here</a>
+{% endif %}
+            
+            
+{% endblock %}
