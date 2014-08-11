@@ -21,8 +21,14 @@ class TicketType extends AbstractType
                 'property' => 'FullName',
                 'multiple' => false,
             ))
-            ->add('description')
-            ->add('profile')
+            ->add('description','text', array(
+                'required' => false,                
+            ))
+            ->add('profile', 'entity', array(
+                'class' => 'RebrecVPNSSHBundle:TunnelProfile',
+                'property' => 'Name',
+                'multiple' => false,
+            ))
             ->add('beginValidDate', 'date', array(
                 'label' => 'Date de Début',
                 'format' => 'yyyy/MM/dd HH:mm',

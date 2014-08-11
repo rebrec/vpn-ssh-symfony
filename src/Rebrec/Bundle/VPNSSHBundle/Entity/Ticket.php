@@ -31,14 +31,14 @@ class Ticket
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=100)
+     * @ORM\Column(name="description", type="string", length=100, nullable=true)
      */
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="profile", type="string", length=20)
+     * @ORM\ManyToOne(targetEntity="TunnelProfile")
      */
     private $profile;
 
@@ -59,14 +59,14 @@ class Ticket
     /**
      * @var Integer
      *
-     * @ORM\Column(name="allowed_hours", type="datetime")
+     * @ORM\Column(name="allowed_hours", type="integer")
      */
     private $allowedHours;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="first_logon", type="datetime")
+     * @ORM\Column(name="first_logon", type="datetime", nullable=true)
      */
     private $firstLogon;
 
@@ -126,6 +126,28 @@ class Ticket
      */
     private $ppkKey;
 
+
+
+        public function __construct()
+    {
+        $generator = new SecureRandom();
+        $this->setAuthKey(bin2hex($generator->nextBytes(10)));
+        $this->setUsername('usr-' . $this->getAuthKey());
+        $this->setSshHostIp('192.168.103.210');
+        $this->setSshHostPort(22);
+        $start = new \DateTime();
+        $end = new \DateTime('+2days');
+        
+        $this->setBeginValidDate($start);
+        $this->setEndValidDate($end);
+        $this->allowedHours = 1; // default allowed time (hours)
+        $this->setPublicKey("generated");
+        $this->setPrivateKey("generated");
+        $this->setPpkKey('generated');
+    }
+
+
+    
     /**
      * Get id
      *
@@ -157,29 +179,6 @@ class Ticket
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set profile
-     *
-     * @param string $profile
-     * @return Ticket
-     */
-    public function setProfile($profile)
-    {
-        $this->profile = $profile;
-
-        return $this;
-    }
-
-    /**
-     * Get profile
-     *
-     * @return string 
-     */
-    public function getProfile()
-    {
-        return $this->profile;
     }
 
     /**
@@ -231,7 +230,7 @@ class Ticket
     /**
      * Set allowedHours
      *
-     * @param \DateTime $allowedHours
+     * @param integer $allowedHours
      * @return Ticket
      */
     public function setAllowedHours($allowedHours)
@@ -244,11 +243,34 @@ class Ticket
     /**
      * Get allowedHours
      *
-     * @return \DateTime 
+     * @return integer 
      */
     public function getAllowedHours()
     {
         return $this->allowedHours;
+    }
+
+    /**
+     * Set firstLogon
+     *
+     * @param \DateTime $firstLogon
+     * @return Ticket
+     */
+    public function setFirstLogon($firstLogon)
+    {
+        $this->firstLogon = $firstLogon;
+
+        return $this;
+    }
+
+    /**
+     * Get firstLogon
+     *
+     * @return \DateTime 
+     */
+    public function getFirstLogon()
+    {
+        return $this->firstLogon;
     }
 
     /**
@@ -435,50 +457,6 @@ class Ticket
         return $this->ppkKey;
     }
 
-    
-    public function __construct()
-    {
-        $generator = new SecureRandom();
-        $this->setAuthKey(bin2hex($generator->nextBytes(10)));
-        $this->setUsername('usr-' . $this->getAuthKey());
-        $this->setSshHostIp('192.168.103.210');
-        $this->setSshHostPort(22);
-        $start = new \DateTime();
-        $end = (new \DateTime())->add(new \DateInterval('P2D'));
-        
-        $this->setBeginValidDate($start);
-        $this->setEndValidDate($end);
-        $this->allowedHours = 1; // default allowed time (hours)
-        $this->setPublicKey("generated");
-        $this->setPrivateKey("generated");
-        $this->setPpkKey('generated');
-    }
-
-    
-
-    /**
-     * Set firstLogon
-     *
-     * @param \DateTime $firstLogon
-     * @return Ticket
-     */
-    public function setFirstLogon($firstLogon)
-    {
-        $this->firstLogon = $firstLogon;
-
-        return $this;
-    }
-
-    /**
-     * Get firstLogon
-     *
-     * @return \DateTime 
-     */
-    public function getFirstLogon()
-    {
-        return $this->firstLogon;
-    }
-
     /**
      * Set customer
      *
@@ -500,5 +478,28 @@ class Ticket
     public function getCustomer()
     {
         return $this->customer;
+    }
+
+    /**
+     * Set profile
+     *
+     * @param \Rebrec\Bundle\VPNSSHBundle\Entity\TunnelProfile $profile
+     * @return Ticket
+     */
+    public function setProfile(\Rebrec\Bundle\VPNSSHBundle\Entity\TunnelProfile $profile = null)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Get profile
+     *
+     * @return \Rebrec\Bundle\VPNSSHBundle\Entity\TunnelProfile 
+     */
+    public function getProfile()
+    {
+        return $this->profile;
     }
 }

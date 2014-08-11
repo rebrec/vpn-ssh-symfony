@@ -23,10 +23,10 @@
                 <tr>
                     <td>{{ ticket.getBeginValidDate|date('Y-m-d H:i:s') }}</td>
                     <td>{{ ticket.getEndValidDate|date('Y-m-d H:i:s') }}</td>
-                    <td>{{ ticket.getAllowedTime|date('Y-m-d H:i:s') }}</td>
+                    <td>{{ ticket.getAllowedHours }}</td>
                     <td>{{ ticket.description }}</td>
                     <td>{{ ticket.authkey }}</td>
-                    <td>{{ ticket.profile }}</td>
+                    <td>{{ ticket.profile.name }}</td>
                 </tr>
             {% endfor %}
         </tbody>
