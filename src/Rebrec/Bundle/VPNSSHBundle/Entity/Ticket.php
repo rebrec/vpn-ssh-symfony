@@ -24,6 +24,13 @@ class Ticket
     /**
      * @var string
      *
+     * @ORM\ManyToOne(targetEntity="Customer")
+     */
+    private $customer;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="string", length=100)
      */
     private $description;
@@ -50,11 +57,18 @@ class Ticket
     private $endValidDate;
 
     /**
+     * @var Integer
+     *
+     * @ORM\Column(name="allowed_hours", type="datetime")
+     */
+    private $allowedHours;
+
+    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="allowed_time", type="datetime")
+     * @ORM\Column(name="first_logon", type="datetime")
      */
-    private $allowedTime;
+    private $firstLogon;
 
     /**
      * @var string
@@ -111,23 +125,6 @@ class Ticket
      * @ORM\Column(name="ppk_key", type="string", length=257)
      */
     private $ppkKey;
-
-    public function __construct()
-    {
-        $generator = new SecureRandom();
-        $this->setAuthKey(bin2hex($generator->nextBytes(10)));
-        $this->setUsername('usr-' . $this->getAuthKey());
-        $this->setSshHostIp('192.168.103.210');
-        $this->setSshHostPort(22);
-        $start = new \DateTime();
-        $end = $start->add(new \DateInterval('P2D'));
-        
-        $this->setBeginValidDate($start);
-        $this->setEndValidDate(new$end);
-        $this->setPublicKey("generated");
-        $this->setPrivateKey("generated");
-        $this->setPpkKey('generated');
-    }
 
     /**
      * Get id
@@ -232,26 +229,26 @@ class Ticket
     }
 
     /**
-     * Set allowedTime
+     * Set allowedHours
      *
-     * @param \DateTime $allowedTime
+     * @param \DateTime $allowedHours
      * @return Ticket
      */
-    public function setAllowedTime($allowedTime)
+    public function setAllowedHours($allowedHours)
     {
-        $this->allowedTime = $allowedTime;
+        $this->allowedHours = $allowedHours;
 
         return $this;
     }
 
     /**
-     * Get allowedTime
+     * Get allowedHours
      *
      * @return \DateTime 
      */
-    public function getAllowedTime()
+    public function getAllowedHours()
     {
-        return $this->allowedTime;
+        return $this->allowedHours;
     }
 
     /**
@@ -349,12 +346,12 @@ class Ticket
     /**
      * Set auth_key
      *
-     * @param string $auth_key
+     * @param string $authKey
      * @return Ticket
      */
-    public function setAuthKey($auth_key)
+    public function setAuthKey($authKey)
     {
-        $this->auth_key = $auth_key;
+        $this->auth_key = $authKey;
 
         return $this;
     }
@@ -436,5 +433,72 @@ class Ticket
     public function getPpkKey()
     {
         return $this->ppkKey;
+    }
+
+    
+    public function __construct()
+    {
+        $generator = new SecureRandom();
+        $this->setAuthKey(bin2hex($generator->nextBytes(10)));
+        $this->setUsername('usr-' . $this->getAuthKey());
+        $this->setSshHostIp('192.168.103.210');
+        $this->setSshHostPort(22);
+        $start = new \DateTime();
+        $end = (new \DateTime())->add(new \DateInterval('P2D'));
+        
+        $this->setBeginValidDate($start);
+        $this->setEndValidDate($end);
+        $this->allowedHours = 1; // default allowed time (hours)
+        $this->setPublicKey("generated");
+        $this->setPrivateKey("generated");
+        $this->setPpkKey('generated');
+    }
+
+    
+
+    /**
+     * Set firstLogon
+     *
+     * @param \DateTime $firstLogon
+     * @return Ticket
+     */
+    public function setFirstLogon($firstLogon)
+    {
+        $this->firstLogon = $firstLogon;
+
+        return $this;
+    }
+
+    /**
+     * Get firstLogon
+     *
+     * @return \DateTime 
+     */
+    public function getFirstLogon()
+    {
+        return $this->firstLogon;
+    }
+
+    /**
+     * Set customer
+     *
+     * @param \Rebrec\Bundle\VPNSSHBundle\Entity\Customer $customer
+     * @return Ticket
+     */
+    public function setCustomer(\Rebrec\Bundle\VPNSSHBundle\Entity\Customer $customer = null)
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * Get customer
+     *
+     * @return \Rebrec\Bundle\VPNSSHBundle\Entity\Customer 
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
     }
 }

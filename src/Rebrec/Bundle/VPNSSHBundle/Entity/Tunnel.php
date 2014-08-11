@@ -150,5 +150,17 @@ class Tunnel
     {
         return $this->protocol;
     }
+    
+    
+    /**
+     * isValid
+     *  Determine if the ticket is still in its validity period according to current DateTime
+     * @return boolean 
+     */
+    public function isValid()
+    {// NOT IMPLEMENTED YET
+        return false;
+        
+    }
 
 }

@@ -16,6 +16,11 @@ class TicketType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('customer', 'entity', array(
+                'class' => 'RebrecVPNSSHBundle:Customer',
+                'property' => 'FullName',
+                'multiple' => false,
+            ))
             ->add('description')
             ->add('profile')
             ->add('beginValidDate', 'date', array(
@@ -30,10 +35,8 @@ class TicketType extends AbstractType
                 'widget' => 'single_text',
                 'attr' => array('class'=>'datetimepicker'),
             ))
-            ->add('allowedTime', 'datetime', array(
-                'widget' => 'single_text',
-                'format' => 'yyyy/MM/dd',
-                'attr' => array('class'=>'datetimepicker'),
+            ->add('allowedHours', 'integer', array(
+                'label' => 'Nombre d\'heures autorisées',
             ))
             ->add('clientIp','text', array(
                 'required' => false,                

@@ -151,4 +151,10 @@ class Customer
     {
         return $this->company;
     }
+    
+    public function getFullName()
+    {
+        return $this->lastName . " " . $this->firstName;
+        
+    }
 }
