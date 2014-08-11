@@ -51,13 +51,25 @@ class TicketsController extends Controller
     }
  
     /**
-     * @Route("/delete")
+     * @Route("/delete/{key}")
      * @Template()
      */
-    public function deleteAction()
+    public function deleteAction($key)
     {
-        return array(
-                // ...
-            );    }
-
+        $repository = $this->getDoctrine()->getRepository('RebrecVPNSSHBundle:Ticket');
+        if (null !== $key)
+        {
+            $ticket = $repository->findOneBy(array('auth_key' => $key));
+            if (null === $ticket) {
+                $error = true;
+            }
+            else        {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($ticket);                    
+                $em->flush();
+                $error = false;
+            }        
+        }
+        return $this->redirect($this->generateUrl('rebrec_vpnssh_tickets_list'));
+    }
 }

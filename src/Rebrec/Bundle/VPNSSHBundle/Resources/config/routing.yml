@@ -28,6 +28,12 @@ rebrec_vpnssh_customers:
     type:     annotation
     prefix:   /customers/
 
+rebrec_vpnssh_client:
+    resource: "@RebrecVPNSSHBundle/Controller/ClientController.php" 
+    type:     annotation
+    prefix:   /client/
+
+
 rebrec_vpnssh_homepage:
     resource: "@RebrecVPNSSHBundle/Controller/DefaultController.php" 
     type:     annotation

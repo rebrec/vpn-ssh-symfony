@@ -75,7 +75,7 @@ class Ticket
      *
      * @ORM\Column(name="client_ip", type="string", length=16, nullable=true)
      */
-    private $clientIp;
+    private $clientIp = 'empty';
 
     /**
      * @var string
@@ -502,4 +502,10 @@ class Ticket
     {
         return $this->profile;
     }
-}
+
+    public function isRegistered()
+    {
+        return ($this->clientIp !== 'empty');
+    }
+    
+    }

@@ -10,6 +10,7 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
+                <th></th>
                 <th>Valide à partir de</th>
                 <th>Valide jusqu'à</th>
                 <th>Durée de Validité</th>
@@ -20,7 +21,19 @@
         </thead>
         <tbody>
             {% for ticket in arrTickets %}
-                <tr>
+                <tr class="{% if ticket.isRegistered %}
+                                success
+                            
+                            {% else %}
+                                warning
+                            {% endif %}
+                    ">
+                    <td>
+                        <a href="{{ path('rebrec_vpnssh_tickets_delete', { 'key': ticket.authkey }) }}">X</a>&nbsp;
+                        <a href="{{ path('rebrec_vpnssh_client_register', { 'key': ticket.authkey }) }}">Test</a>&nbsp;
+                    
+                    </td>
+                        
                     <td>{{ ticket.getBeginValidDate|date('Y-m-d H:i:s') }}</td>
                     <td>{{ ticket.getEndValidDate|date('Y-m-d H:i:s') }}</td>
                     <td>{{ ticket.getAllowedHours }}</td>
@@ -30,5 +43,6 @@
                 </tr>
             {% endfor %}
         </tbody>
+    </table>
 {%endspaceless %}
 {% endblock %}
