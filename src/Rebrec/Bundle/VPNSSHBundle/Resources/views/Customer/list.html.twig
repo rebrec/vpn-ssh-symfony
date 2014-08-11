@@ -1,0 +1,29 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}RebrecVPNSSHBundle:Customer:list{% endblock %}
+
+{% block body %}
+{% spaceless %}
+<h1>Customers Déclarés</h1>
+    <br>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>EMail</th>
+                <th>Société</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in arrCustomers %}
+                <tr>
+                    <td>{{ customer.firstname }}</td>
+                    <td>{{ customer.lastname }}</td>
+                    <td>{{ customer.email }}</td>
+                    <td>{{ customer.company.name}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+{%endspaceless %}
+{% endblock %}

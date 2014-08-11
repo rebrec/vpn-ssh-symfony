@@ -1,7 +1,3 @@
-rebrec_vpnssh_homepage:
-    path:     /
-    defaults: { _controller: RebrecVPNSSHBundle:Default:index }
-
 rebrec_vpnssh_tickets:
     resource: "@RebrecVPNSSHBundle/Controller/TicketsController.php" 
     type:     annotation
@@ -21,3 +17,18 @@ rebrec_vpnssh_tunnelprofiles:
     resource: "@RebrecVPNSSHBundle/Controller/TunnelProfilesController.php" 
     type:     annotation
     prefix:   /tunnelprofiles/
+
+rebrec_vpnssh_company:
+    resource: "@RebrecVPNSSHBundle/Controller/CompanyController.php" 
+    type:     annotation
+    prefix:   /company/
+
+rebrec_vpnssh_customers:
+    resource: "@RebrecVPNSSHBundle/Controller/CustomerController.php" 
+    type:     annotation
+    prefix:   /customers/
+
+rebrec_vpnssh_homepage:
+    resource: "@RebrecVPNSSHBundle/Controller/DefaultController.php" 
+    type:     annotation
+    prefix:   /

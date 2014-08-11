@@ -21,7 +21,7 @@
                         {% for tunnel in tunnelprofile.tunnels %}
                             <a href="#">{{tunnel.name}}
                                 {{
-                                (tunnel.protocolname|lower ~ '://(') ~ tunnel.hostip ~ ':' ~ tunnel.hostport ~ ')' 
+                                (tunnel.protocol.name|lower ~ '://(') ~ tunnel.hostip ~ ':' ~ tunnel.hostport ~ ')' 
                                 }}
                             </a>&nbsp;
                     

@@ -5,12 +5,12 @@ namespace Rebrec\Bundle\VPNSSHBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Protocol
+ * Company
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Protocol
+class Company
 {
     /**
      * @var integer
@@ -24,11 +24,16 @@ class Protocol
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=20)
+     * @ORM\Column(name="Name", type="string", length=40)
      */
     private $name;
 
- 
+    /*
+     * 
+     * @ORM\OneToMany(targetEntity="Customer")
+     */
+    private $customers;
+
 
     /**
      * Get id
@@ -44,7 +49,7 @@ class Protocol
      * Set name
      *
      * @param string $name
-     * @return Protocol
+     * @return Company
      */
     public function setName($name)
     {

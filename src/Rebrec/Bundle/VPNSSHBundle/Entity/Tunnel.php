@@ -150,13 +150,5 @@ class Tunnel
     {
         return $this->protocol;
     }
-    /**
-     * Get protocol NAME
-     *
-     * @return string
-     */
-    public function getProtocolName()
-    {
-        return $this->protocol->getName();
-    }
+
 }
