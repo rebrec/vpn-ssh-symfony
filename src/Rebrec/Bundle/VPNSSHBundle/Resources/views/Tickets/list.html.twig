@@ -23,12 +23,12 @@
             {% for ticket in arrTickets %}
                 <tr class="{% if ticket.isRegistered %}
                                 success
-                            
                             {% else %}
                                 warning
                             {% endif %}
                     ">
                     <td>
+                        
                         <a href="{{ path('rebrec_vpnssh_tickets_delete', { 'key': ticket.authkey }) }}">X</a>&nbsp;
                         <a href="{{ path('rebrec_vpnssh_client_register', { 'key': ticket.authkey }) }}">Test</a>&nbsp;
                     

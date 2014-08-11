@@ -44,9 +44,6 @@ class TicketType extends AbstractType
             ->add('allowedHours', 'integer', array(
                 'label' => 'Nombre d\'heures autorisées',
             ))
-            ->add('clientIp','text', array(
-                'required' => false,                
-                ))
             ->add('Valider', 'submit')            
         ;
 
