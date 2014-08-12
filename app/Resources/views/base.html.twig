@@ -5,17 +5,18 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
 
             {% block stylesheets %}
-                {% stylesheets '../app/Resources/public/bootstrap/css/bootstrap.css'
+                {% stylesheets '../web/bundles/rebrecvpnssh/bootstrap/css/bootstrap.css'
                         '../app/Resources/public/css/*' 
                         
+
                 %}
                     <link rel="stylesheet" href="{{ asset_url }}" />
                 {% endstylesheets %}
             {% endblock %}
             {% block javascripts_first %}
                 {% javascripts 
-                    '../app/Resources/public/bootstrap/js/jquery-1.11.1.min.js'
-                    '../app/Resources/public/bootstrap/js/bootstrap.js'
+                    '@RebrecVPNSSHBundle/Resources/public/bootstrap/js/jquery-1.11.1.min.js'
+                    '@RebrecVPNSSHBundle/Resources/public/bootstrap/js/bootstrap.js'
                     %}
                     <script src="{{ asset_url }}" type="text/javascript"></script>
                {% endjavascripts %}               

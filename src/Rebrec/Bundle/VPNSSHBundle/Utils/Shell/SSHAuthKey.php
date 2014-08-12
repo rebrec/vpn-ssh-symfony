@@ -1,36 +1,32 @@
 <?php
-namespace Rebrec\VpnSSHGw\Shell;
+namespace Rebrec\Bundle\VPNSSHBundle\Utils\Shell;
 
-use Rebrec\VpnSSHGw\Config\Configuration as Configuration;
+use Doctrine\Common\Collections\ArrayCollection;
 
-
-error_reporting(E_ALL);
+use Rebrec\Bundle\VPNSSHBundle\Utils\Config\Configuration;
+use Rebrec\Bundle\VPNSSHBundle\Entity\TunnelProfile;
 
 class SSHAuthKey
 {
     private $strPubKey = null;
     private $strRestrictions = null;
-    private $arrTunnels = null;
+    private $tunnels = null;
 
-    public function __construct($strPubKey, $arrTunnels)
+    public function __construct($strPubKey, $tunnels)
     {
         $this->strPubKey = $strPubKey;
-        $this->arrTunnels = $arrTunnels;
+        $this->tunnels = $tunnels;
         $this->strRestrictions = Configuration::AUTHORIZEDKEYS_RESTRICTIONS;
     }
     private function getPermitOpenRule()
     {
         $res ="";
-    	if (empty($this->arrTunnels)) {  // if arrtunnels is empty generate no-port-forwarding rule
+    	if (empty($this->tunnels)) {  // if arrtunnels is empty generate no-port-forwarding rule
             echo "\n\nNO PORT FORWARDING !\n";
             $res = ",no-port-forwarding";
     	} else { // loop through each tunnel to generate permitopen="ip:port" data
-            if (is_array($this->arrTunnels)) {
-                foreach ($this->arrTunnels as $arrTunnel) {
-                    $res = $res . ',permitopen="' . $arrTunnel['tunnelIP'] . ":" . $arrTunnel['tunnelPort'] . '"';
-                }
-            } else {
-                $res = $res . ',permitopen="' . $this->arrTunnels . '"';
+            foreach ($this->tunnels as $tunnel) {
+                $res = $res . ',permitopen="' . $tunnel->getHostIp() . ":" . $tunnel->getHostPort() . '"';
             }
         }
         return $res;
@@ -56,5 +52,5 @@ class SSHAuthKey
     	$returnValue = $this->strRestrictions . $this->getPermitOpenRule() . " " . $this->strPubKey;
         return $returnValue;
     }
-
+ 
 }

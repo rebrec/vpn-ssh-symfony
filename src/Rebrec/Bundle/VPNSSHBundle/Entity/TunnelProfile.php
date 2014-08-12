@@ -123,4 +123,19 @@ class TunnelProfile
     {
         $this->tunnels->removeElement($tunnels);
     }
+    
+    public function getTunnelsToArray()
+    {
+        $arrTunnels = array();
+        foreach ($this->tunnels as $tunnel) {
+            $arrTunnels[] = array(
+                'name' => $tunnel->getName(),
+                'proto'=> $tunnel->getProtocol()->getName(),
+                'tunnelIP' => $tunnel->getHostIp(),
+                'tunnelPort' => $tunnel->getHostPort(),
+            );
+        }
+        return $arrTunnels;
+        }
+    
 }

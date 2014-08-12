@@ -1,29 +1,25 @@
 <?php
-namespace Rebrec\VpnSSHGw\Shell;
+namespace Rebrec\Bundle\VPNSSHBundle\Utils\Shell;
 
-use Rebrec\VpnSSHGw\Config\Configuration as Configuration;
-
-
-error_reporting(E_ALL);
-
+use Rebrec\Bundle\VPNSSHBundle\Utils\Config\Configuration;
 
 class SSHKeyPair
 {
     private $strPubKey = null;
     private $strPrivKey = null;
-	private $strPuttyPPK = null;
+    private $strPuttyPPK = null;
     private $strType = null;
     private $strSession = null;
-	private $intSize = null;
-	private $strTemporaryKey = null; 
+    private $intSize = null;
+    private $strTemporaryKey = null; 
 	
     public function __construct( $strSession,  $intSize = 2048, $strType = 'rsa')
     {
-    	$this->strTemporaryKey = Configuration::PROJECT_ROOT . Configuration::TEMPORARY_ROOT_DIRECTORY; 
-		$this->strSession = $strSession;
-		$this->intSize = $intSize;
-		$this->strType = $strType;
-		$this->GenKeyPair();
+        $this->strTemporaryKey = Configuration::PROJECT_ROOT . Configuration::TEMPORARY_ROOT_DIRECTORY; 
+        $this->strSession = $strSession;
+        $this->intSize = $intSize;
+        $this->strType = $strType; 
+        $this->GenKeyPair();
     }
     public function GetPubKey()
     {
@@ -32,22 +28,21 @@ class SSHKeyPair
 
     public function GetPrivKey()
     {
-    	return $this->strPrivKey;
+        return $this->strPrivKey;
     }
-	private function CleanUpTemporaryFiles()
-	{
-		passthru('rm ' . $this->GetTemporaryKeyFilename() . '*' );
-	}
+    private function CleanUpTemporaryFiles()
+    {
+            passthru('rm ' . $this->GetTemporaryKeyFilename() . '*' );
+    }
 
-	private function GetTemporaryKeyFilename()
-	{
-		if (ctype_alnum($this->strSession))
-		{
-			return $this->strTemporaryKey . '-' . $this->strSession;
-		}
-		else die("Wrong Session ID!"); 
-		
-	}
+    private function GetTemporaryKeyFilename()
+    {
+        if (ctype_alnum($this->strSession)) {
+            return $this->strTemporaryKey . '-' . $this->strSession;
+        } else {
+            die("Wrong Session ID!");
+        }
+    }
 
     private function GenKeyPair()
 	{

@@ -108,21 +108,21 @@ class Ticket
     /**
      * @var string
      *
-     * @ORM\Column(name="public_key", type="string", length=257)
+     * @ORM\Column(name="public_key", type="string", length=3000)
      */
     private $publicKey;
 
     /**
      * @var string
      * 
-     * @ORM\Column(name="private_key", type="string", length=257)
+     * @ORM\Column(name="private_key", type="string", length=3000)
      */
     private $privateKey;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ppk_key", type="string", length=257)
+     * @ORM\Column(name="ppk_key", type="string", length=3000)
      */
     private $ppkKey;
 
@@ -508,4 +508,4 @@ class Ticket
         return ($this->clientIp !== 'empty');
     }
     
-    }
+}

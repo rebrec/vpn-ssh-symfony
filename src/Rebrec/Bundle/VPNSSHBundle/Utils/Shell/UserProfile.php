@@ -1,11 +1,8 @@
 <?php
-namespace Rebrec\VpnSSHGw\Shell;
+namespace Rebrec\Bundle\VPNSSHBundle\Utils\Shell;
 
-use Rebrec\VpnSSHGw\Config\Configuration as Configuration;
+use Rebrec\Bundle\VPNSSHBundle\Utils\Config\Configuration;
 
-//use Config\Configuration;
-
-error_reporting(E_ALL);
 
 class UserProfile
 {

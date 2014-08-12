@@ -2,14 +2,13 @@
 
 namespace Rebrec\Bundle\VPNSSHBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
-use Symfony\Component\HttpFoundation\Request;
-
 use Rebrec\Bundle\VPNSSHBundle\Entity\Ticket;
 use Rebrec\Bundle\VPNSSHBundle\Form\TicketType;
+use Rebrec\Bundle\VPNSSHBundle\Utils\Shell\UserProfile;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class TicketsController extends Controller
 {
@@ -64,12 +63,25 @@ class TicketsController extends Controller
                 $error = true;
             }
             else        {
+                $username = $ticket->getUsername();
+                echo "Trying to remove profile of username $username ...</br>";
+                $u = new UserProfile($username);
+                echo "Trying to remove profile of username $username ...</br>";
+                echo "Profile directory : " . $u->GetProfilePath();
+                $u->DelUserProfile();
+                echo "Trying to remove session $key ...</br>";
                 $em = $this->getDoctrine()->getManager();
                 $em->remove($ticket);                    
                 $em->flush();
                 $error = false;
             }        
         }
+        
+        
+        
+        
+        
+        
         return $this->redirect($this->generateUrl('rebrec_vpnssh_tickets_list'));
     }
 }

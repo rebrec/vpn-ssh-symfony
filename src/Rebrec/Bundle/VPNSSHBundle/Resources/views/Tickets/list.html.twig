@@ -11,12 +11,14 @@
         <thead>
             <tr>
                 <th></th>
+                <th>Société</th>
+                <th>Prestataire</th>
+                <th>Profile</th>
                 <th>Valide à partir de</th>
                 <th>Valide jusqu'à</th>
                 <th>Durée de Validité</th>
                 <th>Description</th>
                 <th>Token</th>
-                <th>Profile</th>
             </tr>
         </thead>
         <tbody>
@@ -29,17 +31,19 @@
                     ">
                     <td>
                         
-                        <a href="{{ path('rebrec_vpnssh_tickets_delete', { 'key': ticket.authkey }) }}">X</a>&nbsp;
+                        <a class="glyphicon glyphicon-trash" href="{{ path('rebrec_vpnssh_tickets_delete', { 'key': ticket.authkey }) }}"></a>&nbsp;
                         <a href="{{ path('rebrec_vpnssh_client_register', { 'key': ticket.authkey }) }}">Test</a>&nbsp;
                     
                     </td>
                         
+                    <td>{{ ticket.customer.company.name }}</td>
+                    <td>{{ ticket.customer.fullname }}</td>
+                    <td>{{ ticket.profile.name }}</td>
                     <td>{{ ticket.getBeginValidDate|date('Y-m-d H:i:s') }}</td>
                     <td>{{ ticket.getEndValidDate|date('Y-m-d H:i:s') }}</td>
                     <td>{{ ticket.getAllowedHours }}</td>
                     <td>{{ ticket.description }}</td>
                     <td>{{ ticket.authkey }}</td>
-                    <td>{{ ticket.profile.name }}</td>
                 </tr>
             {% endfor %}
         </tbody>
