@@ -7,24 +7,10 @@ body
 {
     margin-top: 70px;
     margin-left: 70px;
+    margin-right: 70px;
 //    font: 11px Verdana, Arial, Helvetica, sans-serif;
     background-color: #f8f8f8;
 
-}
-/*
-
-
-footer
-{
-    background-color: #F5F5F5;
-    border-top: 1px solid #E5E5E5;
-    margin-top: 70px;
-    padding: 70px 0;
-}
-
-.pull-center
-{
-    text-align: center;
 }
 
 #content
@@ -40,33 +26,25 @@ footer
     z-index: 3;
 }
 
-#content form label
+
+
+
+
+footer
 {
-    display: block;
-    width: 300px;
-    background-color: #B9ED5D;
-    float: left;
-    text-align: right;
-    line-height: 2.1em;
-    padding: 0 0.8em 0 0;
-    margin-right: 3px;
+    background-color: #F5F5F5;
+    border-top: 1px solid #E5E5E5;
+    margin-top: 70px;
+    padding: 70px 0;
 }
 
-#content form input
+.pull-center
 {
-    border: 1px solid #cccccc;
-    width: 250px;
-    -webkit-border-radius:3px;
-    -moz-border-radius:3px;
-    border-radius:3px;
+    text-align: center;
 }
 
 
 
 
-#content form input[type=checkbox]
-{
-    display: inline;
-    width: 15px;
-}
-*/
+
+
