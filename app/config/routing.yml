@@ -1,4 +1,6 @@
 rebrec_vpnssh:
     resource: "@RebrecVPNSSHBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /admin/
 
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

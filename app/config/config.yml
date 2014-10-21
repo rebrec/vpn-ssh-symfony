@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator: ~
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -15,7 +15,7 @@ framework:
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
-    default_locale:  "%locale%"
+    default_locale:  "fr"
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
@@ -23,7 +23,6 @@ framework:
         handler_id:  ~
     fragments:       ~
     http_method_override: true
-
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"
@@ -67,3 +66,11 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+
+fos_user:
+  db_driver: orm
+  firewall_name: main
+  user_class: Rebrec\Bundle\VPNSSHBundle\Entity\User
+  
+  

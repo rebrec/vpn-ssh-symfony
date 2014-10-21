@@ -26,8 +26,23 @@
     </head>
     <body>
         <header>
-            <div class="page-header">
-                <h1>VPN-SSH-GW</h1>
+            <div class="header">
+                <h1 class="text-muted">VPN-SSH-GW</h1>
+                <div class="nav nav-pills pull-right">
+                    
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                                    <a href="{{ path('fos_user_security_logout') }}">
+                                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                    </a>
+                                {% else %}
+                                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                                {% endif %}
+                        
+                            
+                    </div>
+                    
+                </div>
             </div>
             <!-- <body data-spy="scroll" data-target=".navbar">  -->
             <nav class="nav nav-pills" role="navigation">
@@ -99,7 +114,7 @@
                 #}
 
 
-                <p class="navbar-text navbar-right">Signed in as XXXX</p>
+                
             </nav>
         </header>
         <section>
